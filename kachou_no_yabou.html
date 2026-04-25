@@ -360,7 +360,7 @@ const CFG = {
   YT_INTRO:   'V9qjKNofkQA',      
   EMAIL: '250b223b@gsuite.kobe-u.ac.jp',
   GAS_URL: 'https://script.google.com/macros/s/AKfycbwdyjSkVzPeVbZGQQrN8vVQ7u72vx8tGVSFrSp-XXcZGvMt1vpsrBruQDhtUIwxu4-2GA/exec', // ★ここをGASのウェブアプリURLに変更してください★
-  RESEARCHER: '貴島 泰実（神戸大学大学院 経営学研究科 江夏ゼミ）'
+  RESEARCHER: '貴島 泰実（神戸大学大学院 経営学研究科 江夏幾多郎ゼミ）'
 };
 
 /* ============================================================
@@ -776,7 +776,7 @@ function renderCandidateArea() {
       <div class="confidential-stamp">極秘 / 取扱注意</div>
       <div class="nb-spine">${rings}</div>
       <div class="nb-page nb-ruled">
-        <div class="nb-name"><span>➀${c.idx} ${c.name}</span><span class="nb-num">DATE:</span></div>
+        <div class="nb-name"><span>■${c.idx} ${c.name}</span><span class="nb-num">DATE:</span></div>
         <div class="nb-grid">
           <div>
             <div class="nb-section"><div class="nb-slabel">候補者評判・多面的評価</div><div class="nb-stext">${n.eval}</div></div>
@@ -812,15 +812,15 @@ function renderResearchPhase() {
   
   const qRank = S.phase === 'BASIC' ? 'Q5：候補者の優先順位をつけてください' : (S.phase === 'AI' ? 'Q11：候補者の優先順位をつけてください' : 'Q18：候補者の優先順位をつけてください');
   const qReason = S.phase === 'BASIC' ? 'Q6：なぜその方を1位にしたのか、理由を教えてください' : (S.phase === 'AI' ? 'Q12：なぜその方を1位にしたのか、理由を教えてください' : 'Q19：なぜその方を1位にしたのか、理由を教えてください');
-  const qDiv = S.phase === 'AI' ? 'Q13：AIシステム（TENKA）の推薦結果と異なる評価をした候補者がいた場合、その名前と理由を教えてください' : 'Q20：AIシステム（TENKA）の推薦結果と異なる評価をした候補者がいた場合、その名前と理由を教えてください';
+  const qDiv = S.phase === 'AI' ? 'Q13：前のフェーズと異なる評価をした候補者がいた場合、その名前と理由を教えてください' : 'Q20：前のフェーズと異なる評価をした候補者がいた場合、その名前と理由を教えてください';
 
   // Init chart after render
   setTimeout(() => { initScoreChart(pfx); }, 200);
   
   const narratorMap = {
-    BASIC: 'あなたはオワリ製作所 人事課長として執務室に着席しました。机の上に4名のタレントカードが揃っています。各候補者のプロファイルを確認し、推奨度を0〜100でご入力ください。',
+    BASIC: 'あなたはオワリ製作所 人事課長として人事部の席に着席しました。パソコン上に4名のタレントカードが揃っています。各候補者のプロファイルを確認し、推奨度を0〜100でご入力ください。',
     AI: 'TENKAシステムのAI分析データが到着しました。アルゴリズムが算出したマッチングスコアと分析コメントを参照しながら、推奨度を再入力してください。',
-    NB: '人事部長が独自に収集した非公式情報ファイルです。公式記録には存在しないこの情報を踏まえ、最終的な推奨スコアをご判断ください。'
+    NB: '人事課長のあなたが独自に収集した非公式情報です。公式記録には存在しないこの情報を踏まえ、最終的な推奨スコアをご判断ください。'
   };
   const narratorIcon = { BASIC:'📋', AI:'🤖', NB:'🔒' };
 
@@ -1235,7 +1235,7 @@ function renderDONE(){
     
     <div style="margin-top:60px;padding-top:24px;border-top:1px solid var(--border);color:var(--cream3);font-size:13px;line-height:1.8">
       <p>${CFG.RESEARCHER}</p>
-      <p>本研究はインフォームドコンセントに基づき実施されています。ご質問は ${CFG.EMAIL} までお問い合わせください。</p>
+      <p>ご質問は ${CFG.EMAIL} までお問い合わせください。</p>
     </div>
   </div>`;
 }
