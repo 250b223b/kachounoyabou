@@ -1156,13 +1156,18 @@ function submitFinalData(btn) {
   const rankName=(arr,i)=>{const c=CANDS.find(x=>x.id===arr[i]);return c?c.name:'';};
   const br=a.b_rank||[]; const ar=a.ai_rank||[]; const nr=a.nb_rank||[];
   
-  // 完全なデータを1つの配列にしてGASに送る（マトリクスはJSON文字列化）
+  // 完全なデータを1つの配列にしてGASに送る（マトリクスは展開する）
   const vals = [
     S.sid, S.group==='A'?'A(基礎→AI→手帳)':'B(基礎→手帳→AI)', ts, elapsed,
     a.b_TM,a.b_TH,a.b_NM,a.b_KF,rankName(br,0),rankName(br,1),rankName(br,2),rankName(br,3),a.b_reason,
     a.ai_TM,a.ai_TH,a.ai_NM,a.ai_KF,rankName(ar,0),rankName(ar,1),rankName(ar,2),rankName(ar,3),a.ai_reason,a.ai_diverge,
     a.nb_TM,a.nb_TH,a.nb_NM,a.nb_KF,rankName(nr,0),rankName(nr,1),rankName(nr,2),rankName(nr,3),a.nb_reason,a.nb_diverge,
-    a.realism, JSON.stringify(a.q22), JSON.stringify(a.q23), a.hr_role, a.free,
+    a.realism, 
+    // Q22の6項目を展開
+    a.q22[0]||'', a.q22[1]||'', a.q22[2]||'', a.q22[3]||'', a.q22[4]||'', a.q22[5]||'',
+    // Q23の9項目を展開
+    a.q23[0]||'', a.q23[1]||'', a.q23[2]||'', a.q23[3]||'', a.q23[4]||'', a.q23[5]||'', a.q23[6]||'', a.q23[7]||'', a.q23[8]||'',
+    a.hr_role, a.free,
     a.panaid, a.gender, a.age_range, a.mgmt_exp, a.max_sub, a.main_fn, a.fn_years
   ];
 
