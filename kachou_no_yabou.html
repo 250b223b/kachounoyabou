@@ -819,8 +819,8 @@ function renderResearchPhase() {
   
   const narratorMap = {
     BASIC: 'あなたはオワリ製作所 人事課長として人事部の席に着席しました。パソコン上に4名のタレントカードが揃っています。各候補者のプロファイルを確認し、推奨度を0〜100でご入力ください。',
-    AI: 'TENKAシステムのAI分析データが到着しました。アルゴリズムが算出したマッチングスコアと分析コメントを参照しながら、推奨度を再入力してください。',
-    NB: '人事課長のあなたが独自に収集した非公式情報です。公式記録には存在しないこの情報を踏まえ、最終的な推奨スコアをご判断ください。'
+    AI: 'TENKAシステムのAI分析データが到着しました。アルゴリズムが算出したマッチングスコアと分析コメントを参照しながら、推奨度を入力してください。',
+    NB: '人事課長のあなたが独自に収集した非公式情報です。公式記録には存在しないこの情報を踏まえ、優先順位と推奨スコアをご判断ください。'
   };
   const narratorIcon = { BASIC:'📋', AI:'🤖', NB:'🔒' };
 
@@ -1029,7 +1029,7 @@ function renderCHARS(){
       <div class="card">
         <div class="label" style="margin-bottom:8px">オワリ製作所</div>
         <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:16px"><div style="width:64px;height:64px;border-radius:8px;background:linear-gradient(135deg,#2A1A0A,#5A3818);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0">👔</div><div><div style="font-size:11px;color:var(--cream2)">代表取締役・社長執行役員</div><div style="font-size:20px;font-family:'Noto Serif JP',serif;font-weight:700">織田 社長</div></div></div>
-        <p style="font-size:13px;color:var(--cream2);line-height:1.8">オワリ製作所２代目社長。初代の織田秀信氏からバトンを引き継いで以降、急速に事業を拡大。</p>
+        <p style="font-size:13px;color:var(--cream2);line-height:1.8">オワリ製作所２代目社長。初代の織田秀信氏からバトンを引き継いで以降、急速に事業を拡大。社長直下に製造部門、技術部門、営業部門、経理部門、そして人事部門が直轄されています。</p>
       </div>
       <div class="card">
         <div class="label" style="margin-bottom:8px">あなたの役割</div>
@@ -1040,7 +1040,7 @@ function renderCHARS(){
     <div class="card" style="margin-bottom:8px">
       <div class="label" style="margin-bottom:12px">アヅチプロジェクト概要</div>
       <p style="font-size:14px;line-height:1.8;margin-bottom:16px">急速なデジタル化と市場環境の変化という危機に直面した「オワリ製作所」が、その難局を打破するために始動させた工場建設プロジェクトです。</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">${[['🎯 目的','琵琶湖のほとりに、最先端技術を結集した新しい工場を新設する'],['👤 発案者','織田社長'],['👥 必要ポジション','5名（まずは最初に1ポジションを人選します）']].map(([t,v])=>`<div class="card-dim" style="padding:14px;border-radius:8px"><div style="font-size:13px;font-weight:700;margin-bottom:6px">${t}</div><div style="font-size:12px;color:var(--cream2);line-height:1.6">${v}</div></div>`).join('')}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">${[['🎯 目的','琵琶湖のほとりに、最先端技術を結集した新しい工場を新設する'],['👤 発案者','織田社長（いわゆる社長プロジェクト）'],['👥 必要ポジション','5名（あなたの下に製造、技術、営業、経理、人事から1名ずつ人選）']].map(([t,v])=>`<div class="card-dim" style="padding:14px;border-radius:8px"><div style="font-size:13px;font-weight:700;margin-bottom:6px">${t}</div><div style="font-size:12px;color:var(--cream2);line-height:1.6">${v}</div></div>`).join('')}</div>
     </div>
     ${navBar('goBack()','goNext()')}
   </div>`;
@@ -1054,7 +1054,7 @@ function renderTENKA(){
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">${[['📊 従業員プロファイル','スキル、経歴、業績などを集約・人材の総合情報を一元管理'],['🎯 パフォーマンス管理','MBO/OKRなど目標管理、360度評価、リアルタイムフィードバックをデジタル化'],['🤝 採用管理（ATS）','候補者のパイプライン管理から、入社後のミスマッチ防止までをサポート'],['📋 後継者計画','次世代リーダーの選定や、重要ポジションのバックアッププランを可視化'],['📈 アナリティクス','組織分析のエンゲージメント分析など、データに基づく意思決定を支援'],['🚀 オンボーディング','新入社員が早期に活躍できるよう、タスクやコミュニケーションを自動案内']].map(([t,v])=>`<div class="card-dim" style="padding:14px;border-radius:8px"><div style="font-size:13px;font-weight:700;margin-bottom:6px">${t}</div><div style="font-size:12px;color:var(--cream2);line-height:1.6">${v}</div></div>`).join('')}</div>
     </div>
     <div class="card card-gold" style="margin-bottom:8px">
-      <div style="font-size:14px;line-height:1.8;color:var(--cream2)">今回は5ポジションのうちの一つ「<strong style="color:var(--cream)">チェンジマネジメント推進者</strong>」について、TENKAが抽出した候補者4名のうち1名を人選いただきます。</div>
+      <div style="font-size:14px;line-height:1.8;color:var(--cream2)">今回は5ポジションのうち、あなたの右腕となる「<strong style="color:var(--cream)">チェンジマネジメント推進者</strong>」について、TENKAが抽出した候補者4名のうち1名を人選いただきます。</div>
     </div>
     ${navBar('goBack()','goNext()')}
   </div>`;
@@ -1062,9 +1062,9 @@ function renderTENKA(){
 
 function renderPOSITION(){
   return`<div class="fade-up">
-    <div class="label">Position E — Job Description</div><h2 style="font-size:28px;margin-bottom:20px">チェンジマネジメント・推進者</h2>
+    <div class="label">あなたが最初に選ぶ右腕ポジション</div><h2 style="font-size:28px;margin-bottom:20px">チェンジマネジメント推進者について</h2>
     <div class="pos-desc" style="margin-bottom:24px">
-      <div style="font-size:18px;font-weight:700;color:var(--gold);line-height:1.5;margin-bottom:16px">「人の不安を、変革への意欲に変える。組織文化変革の設計者。」</div><div class="divider"></div>
+      <div style="font-size:18px;font-weight:700;color:var(--gold);line-height:1.5;margin-bottom:16px">「人の不安を変革への意欲に変える。組織文化変革の設計者」</div><div class="divider"></div>
       <div style="margin-bottom:16px"><div class="label" style="margin-bottom:8px">ミッション</div><p style="font-size:14px;color:var(--cream2);line-height:1.8">どれほど優れた技術・戦略も、「人」が動かなければ実現しません。アヅチプロジェクトが直面する最大の障壁は、新工場への異動・スキル転換に伴う現場の不安と抵抗です。本ポジションのミッションは、その人間的な課題を正面から受け止め、組織がプロジェクトの変化を「脅威」ではなく「機会」として受け入れられるよう、変革プロセスを設計・推進することです。プロジェクトリーダーの最も重要な右腕として機能してください。</p></div>
       <div class="must-want">
         <div class="mw-box"><div class="mw-title text-gold">【必須要件 Must】</div>${['人事（労務・人材開発・組織開発）または組織変革・チェンジマネジメントの実務経験5年以上','現場マネージャー・社員との個別対話・ファシリテーション経験','社内コミュニケーション施策・研修プログラムの企画・運営経験','複数部門にまたがる人的課題の調整・推進経験'].map(v=>`<div class="mw-item">${v}</div>`).join('')}</div>
@@ -1128,7 +1128,7 @@ function renderPOST(){
   });
   
   html += `</table>
-    <div style="margin-top:32px"><div class="label" style="margin-bottom:8px">Q24：AIが異動・配置に本格的に活用されるようになった場合、人事担当者が果たすべき役割はどのように変化すると思いますか？</div><textarea class="ta" id="hr-role" placeholder="自由記述">${S.a.hr_role}</textarea></div>
+    <div style="margin-top:32px"><div class="label" style="margin-bottom:8px">Q24：AIが異動・配置に本格的に活用されるようになった場合、人事が果たすべき役割はどのように変化すると思いますか？</div><textarea class="ta" id="hr-role" placeholder="自由記述">${S.a.hr_role}</textarea></div>
     <div style="margin-top:24px; margin-bottom:16px"><div class="label" style="margin-bottom:8px">Q25：今回のゲームを通じて感じたこと・気づいたことがあればご自由にお書きください。</div><textarea class="ta" id="free" placeholder="自由記述">${S.a.free}</textarea></div>
     ${navBar('goBack()','savePostNext()')}
   </div>`;
