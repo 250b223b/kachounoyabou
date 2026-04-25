@@ -235,6 +235,105 @@ select.sel:focus{outline:none;border-color:var(--gold)}
 
 @media(max-width:1000px){ .dashboard { grid-template-columns: 1fr; } .assessment-panel { position: static; margin-top:30px; } }
 @media(max-width:900px){ #sidebar { transform: translateX(-100%); } #main-content { margin-left: 0; } }
+
+/* ===== Gamification & Immersion Updates ===== */
+.scan-line {
+  position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+  background: rgba(79, 195, 247, 0.5);
+  box-shadow: 0 0 10px #4FC3F7, 0 0 5px #4FC3F7;
+  animation: scan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  z-index: 10; opacity: 0.8;
+  pointer-events: none;
+}
+@keyframes scan { 0% { top: -10%; } 100% { top: 110%; } }
+
+.confidential-stamp {
+  position: absolute; top: 20px; right: 20px;
+  color: rgba(138, 32, 32, 0.6); font-family: 'Noto Serif JP', serif;
+  font-size: 24px; font-weight: 900; letter-spacing: 4px;
+  border: 3px solid rgba(138, 32, 32, 0.6); padding: 4px 12px;
+  transform: rotate(-15deg); border-radius: 4px; z-index: 5; pointer-events: none;
+}
+
+.glitch-reveal { animation: glitchText 0.8s steps(10) forwards; }
+@keyframes glitchText {
+  0% { opacity: 0; clip-path: inset(50% 0 50% 0); }
+  50% { opacity: 0.8; clip-path: inset(10% 0 80% 0); }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+/* ===== IMMERSION ENHANCEMENT SYSTEM v2 ===== */
+
+/* Cinematic Phase Overlay */
+#cinematic-overlay{
+  position:fixed;inset:0;z-index:9999;background:#020712;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .4s ease;
+}
+#cinematic-overlay.cin-in{opacity:1}
+#cinematic-overlay.cin-out{opacity:0}
+.cin-inner{text-align:center;animation:cinReveal .7s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes cinReveal{from{transform:scale(.92) translateY(24px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+.cin-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:5px;opacity:.5;margin-bottom:14px}
+.cin-icon{font-size:60px;margin-bottom:18px;display:block;filter:drop-shadow(0 0 24px currentColor)}
+.cin-title{font-family:'Noto Serif JP',serif;font-size:38px;font-weight:900;margin-bottom:10px;line-height:1.2}
+.cin-sub{font-family:'Share Tech Mono',monospace;font-size:13px;opacity:.6;letter-spacing:3px;margin-bottom:26px}
+.cin-narrative{font-size:14px;line-height:2;max-width:460px;margin:0 auto;border-left:3px solid;padding-left:18px;text-align:left;color:rgba(255,255,255,.72)}
+.cin-bar{width:200px;height:2px;background:rgba(255,255,255,.1);margin:28px auto 0;border-radius:2px;overflow:hidden}
+.cin-bar-inner{height:100%;border-radius:2px;animation:cinBar 2.3s linear forwards}
+@keyframes cinBar{from{width:0}to{width:100%}}
+
+/* Phase Narrator */
+.phase-narrator{
+  background:linear-gradient(135deg,rgba(200,148,30,.07),rgba(27,168,184,.04));
+  border:1px solid rgba(200,148,30,.25);border-radius:8px;
+  padding:14px 20px;margin-bottom:22px;position:relative;overflow:hidden;
+}
+.phase-narrator::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--gold),var(--teal));
+}
+.phase-narrator-role{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:6px}
+.phase-narrator-text{font-size:13px;color:var(--cream);line-height:1.75;font-style:italic}
+
+/* Live Score Chart */
+.score-chart-panel{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px;margin-top:20px}
+.score-chart-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:10px}
+
+/* Delta Badges */
+.delta-chip{font-family:'Share Tech Mono',monospace;font-size:10px;padding:1px 5px;border-radius:3px;font-weight:700;vertical-align:middle;margin-left:4px}
+.d-up{background:rgba(40,150,90,.2);color:#44BB77}
+.d-dn{background:rgba(176,48,48,.2);color:#EF9A9A}
+.d-eq{background:rgba(255,255,255,.06);color:var(--cream3)}
+
+/* Title Screen */
+.title-wrap{position:relative;min-height:85vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+#title-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.title-z{position:relative;z-index:2}
+.title-badge{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--cream3);border:1px solid var(--border);padding:4px 14px;border-radius:20px;margin-bottom:20px}
+@keyframes pulseCTA{0%,100%{box-shadow:0 6px 20px rgba(200,148,30,.3)}50%{box-shadow:0 6px 34px rgba(200,148,30,.7),0 0 0 8px rgba(200,148,30,.1)}}
+.pulse-btn{animation:pulseCTA 2.2s ease-in-out infinite}
+
+/* AI Score Animation */
+@keyframes aiDot{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.ai-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);display:inline-block;animation:aiDot 1s ease-in-out infinite}
+.ai-dot:nth-child(2){animation-delay:.2s}
+.ai-dot:nth-child(3){animation-delay:.4s}
+
+/* NB Stamp */
+@keyframes stampSlam{0%{transform:rotate(-15deg) scale(2.2);opacity:0}60%{transform:rotate(-15deg) scale(.93);opacity:.85}80%{transform:rotate(-15deg) scale(1.03)}100%{transform:rotate(-15deg) scale(1);opacity:.6}}
+.confidential-stamp{animation:stampSlam .55s cubic-bezier(.36,.07,.19,.97) .25s both}
+
+/* Ink text reveal for NB */
+@keyframes inkReveal{from{opacity:0;filter:blur(3px)}to{opacity:1;filter:blur(0)}}
+.nb-section{animation:inkReveal .4s ease forwards}
+.nb-section:nth-child(2){animation-delay:.08s}
+.nb-section:nth-child(3){animation-delay:.16s}
+.nb-section:nth-child(4){animation-delay:.24s}
+
+/* Candidate tab AI score chip */
+.ai-score-chip{display:block;font-family:'Share Tech Mono',monospace;font-size:10px;margin-top:2px}
+
 </style>
 </head>
 <body>
@@ -528,9 +627,16 @@ function renderSidebar() {
     if (pfxMap[pid] && i <= S.maxReached) {
       const pfx = pfxMap[pid];
       const tm = S.a[pfx+'_TM']; const th = S.a[pfx+'_TH']; const nm = S.a[pfx+'_NM']; const kf = S.a[pfx+'_KF'];
+      const d = (v, id) => {
+        if (pfx === 'b') return '';
+        const delta = parseInt(v||50) - parseInt(S.a['b_'+id]||50);
+        if (delta === 0) return '';
+        const cls = delta > 0 ? 'd-up' : 'd-dn';
+        return `<span class="delta-chip ${cls}">${delta>0?'+':''}${delta}</span>`;
+      };
       html += `<div class="sb-score-row">
-        <span>田: <b>${tm}</b></span><span>橋: <b>${th}</b></span>
-        <span>村: <b>${nm}</b></span><span>福: <b>${kf}</b></span>
+        <span>田: <b>${tm}</b>${d(tm,'TM')}</span><span>橋: <b>${th}</b>${d(th,'TH')}</span>
+        <span>村: <b>${nm}</b>${d(nm,'NM')}</span><span>福: <b>${kf}</b>${d(kf,'KF')}</span>
       </div>`;
     }
     
@@ -555,7 +661,8 @@ function updateSlider(id){
   const parts = id.split('-');
   if (parts.length === 2) {
     S.a[parts[0] + '_' + parts[1]] = v;
-    renderSidebar(); 
+    renderSidebar();
+    updateScoreChart(parts[0], parts[1], v);
   }
 }
 
@@ -635,7 +742,8 @@ function renderCandidateArea() {
     </div>`;
   } else if (S.phase === 'AI') {
     const a = c.ai;
-    content = `<div class="ai-card fade-up">
+    content = `<div class="ai-card fade-up glitch-reveal" style="position:relative;">
+      <div class="scan-line"></div>
       <div class="ai-head">
         <span class="ai-head-label">TENKA スキルエージェント — AI分析情報（アルゴリズム出力）</span>
         <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:#60A0D0">${c.initials}（${c.name.split('　')[0]}・${c.initials.split('.')[0]}）</span>
@@ -664,7 +772,8 @@ function renderCandidateArea() {
   } else if (S.phase === 'NB') {
     const n = c.nb;
     const rings = [1,2,3,4,5].map(()=>`<div class="nb-ring"></div>`).join('');
-    content = `<div class="nb-outer fade-up">
+    content = `<div class="nb-outer fade-up" style="position:relative;">
+      <div class="confidential-stamp">極秘 / 取扱注意</div>
       <div class="nb-spine">${rings}</div>
       <div class="nb-page nb-ruled">
         <div class="nb-name"><span>➀${c.idx} ${c.name}</span><span class="nb-num">DATE:</span></div>
@@ -686,6 +795,11 @@ function renderCandidateArea() {
   }
   area.innerHTML = content;
   document.querySelectorAll('.cand-tab').forEach((t, i) => { t.className = `cand-tab ${i === S.currentCandIdx ? 'active' : ''}`; });
+
+  // AI score counter animation
+  if (S.phase === 'AI') {
+    setTimeout(() => { animateAIScore(c.ai.score); }, 150);
+  }
 }
 
 /* ============================================================
@@ -700,23 +814,72 @@ function renderResearchPhase() {
   const qReason = S.phase === 'BASIC' ? 'Q6：なぜその方を1位にしたのか、理由を教えてください' : (S.phase === 'AI' ? 'Q12：なぜその方を1位にしたのか、理由を教えてください' : 'Q19：なぜその方を1位にしたのか、理由を教えてください');
   const qDiv = S.phase === 'AI' ? 'Q13：AIシステム（TENKA）の推薦結果と異なる評価をした候補者がいた場合、その名前と理由を教えてください' : 'Q20：AIシステム（TENKA）の推薦結果と異なる評価をした候補者がいた場合、その名前と理由を教えてください';
 
+  // Init chart after render
+  setTimeout(() => { initScoreChart(pfx); }, 200);
+  
+  const narratorMap = {
+    BASIC: 'あなたはオワリ製作所 人事課長として執務室に着席しました。机の上に4名のタレントカードが揃っています。各候補者のプロファイルを確認し、推奨度を0〜100でご入力ください。',
+    AI: 'TENKAシステムのAI分析データが到着しました。アルゴリズムが算出したマッチングスコアと分析コメントを参照しながら、推奨度を再入力してください。',
+    NB: '人事部長が独自に収集した非公式情報ファイルです。公式記録には存在しないこの情報を踏まえ、最終的な推奨スコアをご判断ください。'
+  };
+  const narratorIcon = { BASIC:'📋', AI:'🤖', NB:'🔒' };
+
   return `<div class="fade-up">
     <div class="label">Research Phase - ${S.phase}</div>
     <h2 style="font-size:26px;margin-bottom:6px">${title}</h2>
-    <p style="color:var(--cream2);margin-bottom:10px;font-size:14px">${desc}</p>
     
+    <div class="phase-narrator">
+      <div class="phase-narrator-role">${narratorIcon[S.phase]} ${S.phase === 'BASIC' ? 'PHASE 1 / 基礎情報評価' : S.phase === 'AI' ? 'AI ANALYSIS / TENKAシステム' : 'CLASSIFIED / 機密情報評価'}</div>
+      <div class="phase-narrator-text">${narratorMap[S.phase]}</div>
+    </div>
+
     <div class="dashboard">
       <div class="data-side">
         <div class="cand-tabs">
-          ${CANDS.map((c, i) => `<div class="cand-tab ${i===S.currentCandIdx?'active':''}" onclick="switchCand(${i})"><span class="tab-status">候補者 0${c.idx}</span>${c.name}</div>`).join('')}
+          ${CANDS.map((c, i) => {
+            const aiChip = S.phase === 'AI' ? `<span class="ai-score-chip" style="color:${c.ai.score>=70?'#4FC3F7':c.ai.score>=50?'#FFB74D':'#EF9A9A'}">AI ${c.ai.score}%</span>` : '';
+            return `<div class="cand-tab ${i===S.currentCandIdx?'active':''}" onclick="switchCand(${i})"><span class="tab-status">候補者 0${c.idx}</span>${c.name}${aiChip}</div>`;
+          }).join('')}
         </div>
         
         <div id="cand-data-view" style="min-height: 480px;"></div>
         
         <div class="divider"></div>
-        <h3 style="font-size:20px;margin-bottom:12px">優先順位と理由の入力</h3>
+        <h3 style="font-size:20px;margin-bottom:12px">各候補者の推奨度スコア</h3>
+        <p style="font-size:13px;color:var(--cream2);margin-bottom:12px">0〜100の間でスライダーを動かして評価してください。</p>
+        
+        ${CANDS.map(c => {
+          const v = S.a[pfx+'_'+c.id];
+          return `<div class="slider-container" style="max-width: 600px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:8px">
+              <div>
+                <div style="font-weight:700;font-size:15px">${c.name}${pfx!=='b'?`<span class="delta-chip ${parseInt(S.a[pfx+'_'+c.id]||50)-parseInt(S.a['b_'+c.id]||50)>0?'d-up':parseInt(S.a[pfx+'_'+c.id]||50)-parseInt(S.a['b_'+c.id]||50)<0?'d-dn':'d-eq'}">${parseInt(S.a[pfx+'_'+c.id]||50)-parseInt(S.a['b_'+c.id]||50)>=0?'+':''}${parseInt(S.a[pfx+'_'+c.id]||50)-parseInt(S.a['b_'+c.id]||50)}</span>`:''}</div>
+                <div style="font-size:11px; color:var(--cream3)">${c.dept}</div>
+              </div>
+              <div class="sval" id="${pfx}-${c.id}-val">${v}</div>
+            </div>
+            <input type="range" class="slider" id="${pfx}-${c.id}" min="0" max="100" value="${v}" 
+              oninput="updateSlider('${pfx}-${c.id}')"
+              style="background:linear-gradient(90deg,var(--gold) ${v}%,var(--border2) ${v}%)">
+            <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--cream3); margin-top:6px;">
+              <span>0 (全く推奨しない)</span><span>100 (強く推奨する)</span>
+            </div>
+          </div><div class="divider" style="margin:16px 0; background:rgba(26,46,80,0.5); max-width: 600px;"></div>`;
+        }).join('')}
+
+        <div style="margin-top:40px; display:flex; gap:16px; align-items:center;">
+          <button class="btn btn-ghost" onclick="goBack()">← 戻る</button>
+          <button class="btn btn-primary" style="flex:1; padding:16px; font-size:16px;" onclick="transitionPhase('${pfx}')">
+            このフェーズの評価を確定して次へ
+          </button>
+        </div>
+      </div>
+      
+      <div class="assessment-panel">
+        <div class="label" style="margin-bottom:20px; font-size:12px; letter-spacing:1px; border-bottom:1px solid var(--border); padding-bottom:10px;">優先順位と理由の入力</div>
+        
         <div class="label" style="margin-bottom:8px">${qRank}</div>
-        <p style="font-size:13px;color:var(--cream2);margin-bottom:12px">ドラッグ＆ドロップで順番を変更できます（上から順に優先順位が高い）</p>
+        <p style="font-size:11px;color:var(--cream2);margin-bottom:12px">ドラッグ＆ドロップで順番を変更（上が1位）</p>
         <ul class="rank-list" id="rank-list-${pfx}">
           ${(S.a[pfx+'_rank']).map((cid, i) => {
             const c = CANDS.find(x => x.id === cid);
@@ -728,46 +891,28 @@ function renderResearchPhase() {
           }).join('')}
         </ul>
         
-        <div style="margin-top:20px; margin-bottom:16px;">
+        <div style="margin-top:24px; margin-bottom:16px;">
           <div class="label" style="margin-bottom:8px">${qReason}</div>
-          <textarea class="ta" id="${pfx}-reason" placeholder="自由記述">${S.a[pfx+'_reason']}</textarea>
+          <textarea class="ta" id="${pfx}-reason" placeholder="自由記述" style="min-height: 120px;">${S.a[pfx+'_reason']}</textarea>
         </div>
         
         ${S.phase !== 'BASIC' ? `
         <div style="margin-bottom:16px;">
           <div class="label" style="margin-bottom:8px">${qDiv}</div>
-          <textarea class="ta" id="${pfx}-diverge" placeholder="（該当なし、または名前と理由を自由記述）">${S.a[pfx+'_diverge']}</textarea>
+          <textarea class="ta" id="${pfx}-diverge" placeholder="（該当なし、または名前と理由を自由記述）" style="min-height: 120px;">${S.a[pfx+'_diverge']}</textarea>
         </div>` : ''}
 
-        <div style="margin-top:40px; display:flex; gap:16px; align-items:center;">
-          <button class="btn btn-ghost" onclick="goBack()">← 戻る</button>
-          <button class="btn btn-primary" style="flex:1; padding:16px; font-size:16px;" onclick="saveResearchPhase('${pfx}'); goNext();">
-            このフェーズの評価を確定して次へ
-          </button>
+        <!-- ★ LIVE SCORE CHART ★ -->
+        <div class="score-chart-panel">
+          <div class="score-chart-title">📊 推奨スコア一覧${pfx !== 'b' ? ' ／ ―― TENKA参考線' : ''}</div>
+          <canvas id="live-score-chart" height="145"></canvas>
         </div>
-      </div>
-      
-      <div class="assessment-panel">
-        <div class="label" style="margin-bottom:20px; font-size:12px; letter-spacing:1px; border-bottom:1px solid var(--border); padding-bottom:10px;">各候補者の推奨度スコア</div>
         
-        ${CANDS.map(c => {
-          const v = S.a[pfx+'_'+c.id];
-          return `<div class="slider-container">
-            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:8px">
-              <div>
-                <div style="font-weight:700; font-size:15px">${c.name}</div>
-                <div style="font-size:11px; color:var(--cream3)">${c.dept}</div>
-              </div>
-              <div class="sval" id="${pfx}-${c.id}-val">${v}</div>
-            </div>
-            <input type="range" class="slider" id="${pfx}-${c.id}" min="0" max="100" value="${v}" 
-              oninput="updateSlider('${pfx}-${c.id}')"
-              style="background:linear-gradient(90deg,var(--gold) ${v}%,var(--border2) ${v}%)">
-            <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--cream3); margin-top:6px;">
-              <span>0 (全く推奨しない)</span><span>100 (強く推奨する)</span>
-            </div>
-          </div><div class="divider" style="margin:16px 0; background:rgba(26,46,80,0.5)"></div>`;
-        }).join('')}
+        <!-- Delta summary (AI/NB only) -->
+        ${pfx !== 'b' ? `<div style="margin-top:12px;font-size:11px;color:var(--cream3);font-family:'Share Tech Mono',monospace;line-height:1.8">
+          Δ vs 基礎評価：${CANDS.map(c=>{const d=parseInt(S.a[pfx+'_'+c.id]||50)-parseInt(S.a['b_'+c.id]||50);return `<span class="delta-chip ${d>0?'d-up':d<0?'d-dn':'d-eq'}">${c.name.split('.')[0]} ${d>0?'+':''}${d}</span>`;}).join(' ')}
+        </div>` : ''}
+
       </div>
     </div>
   </div>`;
@@ -777,20 +922,58 @@ function renderResearchPhase() {
    STATIC PAGES (100% Original Text Inside)
    ============================================================ */
 function renderTITLE(){
-  return`<div class="fade-up" style="min-height:85vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-    <div class="label" style="margin-bottom:16px">MBA Research · Kobe University Graduate School</div>
-    <h1 style="font-size:clamp(42px,8vw,80px);font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:8px">課長の<span class="text-gold">野望</span></h1>
-    <p style="font-size:20px;color:var(--cream2);font-style:italic;margin-bottom:32px">〜 神戸大学MBA - 修士論文研究 〜</p>
-    <div class="card" style="max-width:560px;width:100%;margin-bottom:40px;text-align:left">
-      <div class="label" style="margin-bottom:12px">研究概要</div>
-      <p style="color:var(--cream2);font-size:14px;line-height:1.8;margin-bottom:12px">
-        本調査は、近年導入が進んでいるタレントマネジメントシステム等の情報と、現場の多角的な判断材料が、組織の人材配置における意思決定にどのような影響を及ぼすかを研究するものです。調査を通じて、皆様の意思決定のプロセスを伺うことで、示唆を得たいと考えております。ご多用の折、恐縮ではございますが、ご協力の程、宜しくお願い申し上げます。 なおアンケートはゲーム形式になっており、30分程度を見ていただけましたら幸甚です。
-　　　　<br>※データの扱いと倫理的な対応：ご回答いただいた内容は、当方の論文に活用するデータとして用います。回答は統計的に処理し、個人や組織が特定されることはありません。
-      </p>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--cream3)"><span>⏱ 所要時間：約30分</span><span>📋 回答項目：全25問＋属性7問</span><span>🔒 匿名・任意参加</span></div>
+  // Particle canvas animation
+  setTimeout(() => {
+    const c = document.getElementById('title-canvas');
+    if(!c) return;
+    const ctx = c.getContext('2d');
+    const resize = () => { c.width = c.offsetWidth; c.height = c.offsetHeight; };
+    resize();
+    const pts = Array.from({length:45}, () => ({
+      x:Math.random()*c.width, y:Math.random()*c.height,
+      vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35,
+      r:Math.random()*1.8+.4, a:Math.random()*.7+.2
+    }));
+    let raf;
+    function draw(){
+      ctx.clearRect(0,0,c.width,c.height);
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if(p.x<0||p.x>c.width) p.vx*=-1;
+        if(p.y<0||p.y>c.height) p.vy*=-1;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle=`rgba(200,148,30,${p.a*.45})`; ctx.fill();
+      });
+      pts.forEach((p,i) => { pts.slice(i+1).forEach(q => {
+        const d=Math.hypot(p.x-q.x,p.y-q.y);
+        if(d<110){ ctx.strokeStyle=`rgba(200,148,30,${.18*(1-d/110)})`; ctx.lineWidth=.5;
+          ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
+      }); });
+      raf=requestAnimationFrame(draw);
+    }
+    draw();
+    // cleanup on navigate
+    const cleanup = () => cancelAnimationFrame(raf);
+    document.addEventListener('click', cleanup, {once:true});
+  }, 80);
+
+  return`<div class="title-wrap">
+    <canvas id="title-canvas"></canvas>
+    <div class="title-z fade-up" style="width:100%">
+      <div class="title-badge">AZUCHI PROJECT ／ KOBE UNIVERSITY MBA RESEARCH</div>
+      <img src="https://raw.githubusercontent.com/250b223b/kachounoyabou/main/kacho001.png" alt="課長の野望" style="width:100%;max-width:600px;height:auto;margin-bottom:12px;">
+      <p style="font-size:18px;color:var(--cream2);font-style:italic;margin-bottom:32px">〜 神戸大学MBA - 修士論文研究 〜</p>
+      <div class="card" style="max-width:560px;width:100%;margin:0 auto 40px;text-align:left">
+        <div class="label" style="margin-bottom:12px">研究概要</div>
+        <p style="color:var(--cream2);font-size:14px;line-height:1.8;margin-bottom:12px">
+          本調査は、近年導入が進んでいるタレントマネジメントシステム等の情報と、現場の多角的な判断材料が、組織の人材配置における意思決定にどのような影響を及ぼすかを研究するものです。調査を通じて、皆様の意思決定のプロセスを伺うことで、示唆を得たいと考えております。ご多用の折、恐縮ではございますが、ご協力の程、宜しくお願い申し上げます。なおアンケートはゲーム形式になっており、30分程度を見ていただけましたら幸甚です。<br>
+          <span style="font-size:12px;color:var(--cream3)">※データの扱いと倫理的な対応：ご回答いただいた内容は論文データとして用います。統計的処理により個人・組織は特定されません。</span>
+        </p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--cream3)"><span>⏱ 所要時間：約30分</span><span>📋 全25問＋属性7問</span><span>🔒 匿名・任意参加</span></div>
+      </div>
+      <button class="btn btn-primary btn-xl pulse-btn" onclick="goNext()">ゲームを開始する ▶</button>
+      <p style="margin-top:16px;font-size:12px;color:var(--cream3)">${CFG.RESEARCHER}</p>
     </div>
-    <button class="btn btn-primary btn-xl" onclick="goNext()">ゲームを開始する ▶</button>
-    <p style="margin-top:16px;font-size:12px;color:var(--cream3)">${CFG.RESEARCHER}</p>
   </div>`;
 }
 
@@ -1014,9 +1197,6 @@ function saveDemoNext(){
    DONE & VISUALIZATION (Realtime Comparison)
    ============================================================ */
 function renderDONE(){
-  const rank1Id=(S.a.nb_rank||[])[0];
-  const rank1=CANDS.find(c=>c.id===rank1Id);
-  
   // 描画後にチャートを初期化
   setTimeout(loadAndDrawCharts, 100);
 
@@ -1024,9 +1204,12 @@ function renderDONE(){
     <div style="font-size:48px;margin-bottom:16px">🎉</div>
     <div class="label" style="margin-bottom:8px;justify-content:center">Survey Complete</div>
     <h2 style="font-size:32px;margin-bottom:8px">お疲れ様でした！</h2>
-    <p style="color:var(--cream2);margin-bottom:40px;font-size:14px">あなたの意思決定と、他の参加者の傾向を比較しました。</p>
+
+    <div style="max-width:700px; margin: 0 auto 40px; text-align:left; background:rgba(26,46,80,0.4); border-left:4px solid var(--gold); padding:20px;">
+      <p style="font-size:15px; line-height:1.8; color:var(--cream);">ご協力ありがとうございました。本調査は「AI時代の意思決定における要因の重み付けの解明：複数の要因（スキル、経歴、AI推奨度や責任者の現場知）が、配置という複雑な判断にどの程度寄与しているのか」を因果的に推定していこうとするものでした。得られた知見を通じて、実務的にも人事のあるべき姿や人材開発につなげていきたいと思います。</p>
+    </div>
     
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:30px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:30px; margin-bottom: 40px;">
       <div class="chart-wrap">
         <div class="chart-title">あなたの評価スコアの変遷 (Score Evolution)</div>
         <canvas id="evolutionChart"></canvas>
@@ -1036,18 +1219,6 @@ function renderDONE(){
         <canvas id="avgComparisonChart"></canvas>
       </div>
     </div>
-
-    ${rank1?`<div class="card card-gold" style="max-width:500px;margin:30px auto 40px;text-align:left">
-      <div class="label" style="margin-bottom:8px">あなたの最終選択（1位）</div>
-      <div style="display:flex;align-items:center;gap:16px">
-        <div class="tc-avatar" style="width:64px;height:64px;font-size:20px;border-radius:50%;background:#2A4A9C;display:flex;align-items:center;justify-content:center;color:white;font-family:'Share Tech Mono',monospace">${rank1.initials}</div>
-        <div>
-          <div style="font-size:24px;font-weight:900;font-family:'Noto Serif JP',serif">${rank1.name}</div>
-          <div style="font-size:13px;color:var(--cream2)">${rank1.dept} ${rank1.rank}</div>
-          <div style="margin-top:6px"><span class="badge badge-gold">AI スコア ${rank1.ai.score}%</span></div>
-        </div>
-      </div>
-    </div>`:''}
     
     <div style="max-width:600px;margin:0 auto;text-align:left">
       <div class="card card-dim" style="padding:32px; text-align:center;" id="submit-area">
@@ -1215,6 +1386,130 @@ function render() {
   renderSidebar();
 }
 
+/* ===================================================
+   ★ IMMERSION SYSTEM: Cinematic Transitions
+   =================================================== */
+const PHASE_CIN = {
+  BASIC:{icon:'📋',label:'PHASE 1 / ASSESSMENT',title:'基礎情報フェーズ開始',sub:'TALENT CARD REVIEW',
+    narrative:'あなたはオワリ製作所 人事課長として執務室に着席しました。\n机の上に4名の候補者タレントカードが揃っています。',
+    color:'#C8941E',bar:'#C8941E'},
+  AI:{icon:'🤖',label:'TENKA SYSTEM / AI ANALYSIS',title:'TENKAシステム起動中',sub:'MATCHING ALGORITHM OUTPUT',
+    narrative:'TENKAへのアクセスが完了しました。\nアルゴリズムが各候補者のマッチングスコアを出力します。',
+    color:'#4FC3F7',bar:'#1BA8B8'},
+  NB:{icon:'🔒',label:'CLASSIFIED / TOP SECRET',title:'機密情報ファイル解錠',sub:'BLACK NOTEBOOK REVIEW',
+    narrative:'このファイルは公式記録には存在しません。\n人事部長が個人的に収集した非公式情報です。取り扱い厳重注意。',
+    color:'#CC4444',bar:'#B03030'},
+  POST:{icon:'✅',label:'ASSESSMENT COMPLETE',title:'全フェーズ評価完了',sub:'POST SURVEY',
+    narrative:'3フェーズの人材評価が完了しました。\n続けて事後アンケートにお答えください。',
+    color:'#44BB77',bar:'#28965A'}
+};
+
+function showCinematicOverlay(phaseId, callback) {
+  const cfg = PHASE_CIN[phaseId];
+  if (!cfg) { callback(); return; }
+  const ov = document.createElement('div');
+  ov.id = 'cinematic-overlay';
+  ov.innerHTML = `
+    <div class="cin-inner" style="color:${cfg.color}">
+      <div class="cin-label">${cfg.label}</div>
+      <span class="cin-icon">${cfg.icon}</span>
+      <div class="cin-title" style="color:${cfg.color};text-shadow:0 0 30px ${cfg.color}55">${cfg.title}</div>
+      <div class="cin-sub">${cfg.sub}</div>
+      <div class="cin-narrative" style="border-color:${cfg.color}">${cfg.narrative.replace(/\n/g,'<br>')}</div>
+      <div class="cin-bar"><div class="cin-bar-inner" style="background:${cfg.bar}"></div></div>
+    </div>`;
+  document.body.appendChild(ov);
+  requestAnimationFrame(() => requestAnimationFrame(() => ov.classList.add('cin-in')));
+  setTimeout(() => {
+    ov.classList.add('cin-out');
+    setTimeout(() => { ov.remove(); callback(); }, 420);
+  }, 2700);
+}
+
+function transitionPhase(pfx) {
+  saveResearchPhase(pfx);
+  const o = phaseOrder(), i = phaseIdx(), nextPhase = o[i+1];
+  if (PHASE_CIN[nextPhase]) {
+    showCinematicOverlay(nextPhase, () => {
+      S.phase = nextPhase;
+      if (i+1 > S.maxReached) S.maxReached = i+1;
+      if (['BASIC','AI','NB'].includes(S.phase)) S.currentCandIdx = 0;
+      render(); window.scrollTo(0,0);
+    });
+  } else {
+    goNext();
+  }
+}
+
+/* ===================================================
+   ★ LIVE SCORE CHART (Chart.js)
+   =================================================== */
+let _liveChart = null;
+
+function initScoreChart(pfx) {
+  const canvas = document.getElementById('live-score-chart');
+  if (!canvas) return;
+  if (_liveChart) { _liveChart.destroy(); _liveChart = null; }
+  
+  const scores = CANDS.map(c => parseInt(S.a[pfx+'_'+c.id])||50);
+  const names = CANDS.map(c => c.name);
+  const barColors = scores.map(s => s>=70?'rgba(200,148,30,.78)':s>=40?'rgba(200,148,30,.45)':'rgba(176,48,48,.5)');
+
+  const datasets = [{
+    label:'あなたの評価', data: scores,
+    backgroundColor: barColors, borderColor:'#C8941E', borderWidth:1, borderRadius:3
+  }];
+
+  if (pfx !== 'b') {
+    datasets.push({
+      label:'TENKA AIスコア', type:'line',
+      data: CANDS.map(c => c.ai.score),
+      borderColor:'rgba(27,168,184,.7)', borderWidth:1.5, borderDash:[4,3],
+      pointBackgroundColor:'#1BA8B8', pointRadius:3, tension:0.3, fill:false
+    });
+  }
+
+  _liveChart = new Chart(canvas, {
+    type:'bar', data:{ labels:names, datasets },
+    options:{
+      indexAxis:'y', responsive:true,
+      scales:{
+        x:{min:0,max:100,ticks:{color:'#6A625A',font:{size:9}},grid:{color:'rgba(26,46,80,.5)'}},
+        y:{ticks:{color:'#DDD8CE',font:{size:10}},grid:{display:false}}
+      },
+      plugins:{legend:{labels:{color:'#DDD8CE',font:{size:9},boxWidth:10}}},
+      animation:{duration:200}
+    }
+  });
+}
+
+function updateScoreChart(pfx, candId, newVal) {
+  if (!_liveChart) return;
+  const idx = CANDS.findIndex(c => c.id === candId);
+  if (idx < 0) return;
+  const v = parseInt(newVal);
+  _liveChart.data.datasets[0].data[idx] = v;
+  _liveChart.data.datasets[0].backgroundColor[idx] = v>=70?'rgba(200,148,30,.78)':v>=40?'rgba(200,148,30,.45)':'rgba(176,48,48,.5)';
+  _liveChart.update('none');
+}
+
+/* ===================================================
+   ★ AI SCORE COUNTER ANIMATION
+   =================================================== */
+function animateAIScore(target) {
+  const el = document.querySelector('.ai-pct');
+  if (!el) return;
+  const start = 0;
+  let cur = start;
+  el.textContent = '0%';
+  const step = Math.max(1, Math.ceil(target / 35));
+  const iv = setInterval(() => {
+    cur = Math.min(cur + step, target);
+    el.textContent = cur + '%';
+    if (cur >= target) clearInterval(iv);
+  }, 22);
+}
+
 window.addEventListener('DOMContentLoaded', () => { 
   const sl = el('session-label');
   S.sid = 'G'+S.group+'-'+Math.floor(Date.now()/1000);
@@ -1223,7 +1518,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // Expose globals
-window.goNext=goNext;window.goBack=goBack;window.jumpTo=jumpTo;
+window.goNext=goNext;window.goBack=goBack;window.jumpTo=jumpTo;window.transitionPhase=transitionPhase;
 window.saveResearchPhase=saveResearchPhase;window.savePostNext=savePostNext;window.saveDemoNext=saveDemoNext;
 window.updateSlider=updateSlider;window.dragS=dragS;window.dragO=dragO;window.dragD=dragD;window.dragE=dragE;
 window.selectScale=selectScale;window.submitFinalData=submitFinalData;window.switchCand=switchCand;
