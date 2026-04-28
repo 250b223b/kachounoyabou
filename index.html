@@ -1140,7 +1140,7 @@ function renderPOST(){
     "指示が急ぎの場合、丁寧さよりも伝達の速さを優先してしまう。",
     "配置後、理由を選ばれなかった候補者にも伝える機会を意識的に設けている。",
     "たとえ他の業務に支障が出ても、部下が納得するまで対話に時間を割く。",
-    "丁寧な説明よりも速やかな実行の方が、組織のためになると思う。",
+    "丁寧な説明よりも速やかな実行の方が、組織のためになる。",
     "配置結果を覆す余地がないなら、事前に本人の意見を聞くことは期待を持たせるだけで不誠実だ。",
     "急ぎの案件では、本来の手続きを一部省いてでも速やかに実行することはやむを得ない。",
     "組織の決定プロセスに多少の不公平があっても、全体としてうまくいけば問題ない。"
@@ -1162,7 +1162,7 @@ function renderPOST(){
     html += `<tr><td style="text-align:left">${item}</td>${[1,2,3,4,5].map(v => `<td><input type="radio" name="q22_${i}" value="${v}" ${S.a.q22[i]==v?'checked':''} onchange="S.a.q22[${i}]=${v}"></td>`).join('')}</tr>`;
   });
   
-  html += `</table><div class="divider"></div><div class="label" style="margin-bottom:12px">Q23：部下との関係についての考えについて、あなたのお気持ちに最も近いものをお選びください。</div><table class="matrix-table"><tr><th>質問項目</th>${scales.map(s=>`<th><div class="matrix-label">${s}</div></th>`).join('')}</tr>`;
+  html += `</table><div class="divider"></div><div class="label" style="margin-bottom:12px">Q23：部下との関係についての考えについて、あなたのお気持ちに最も近いものをお選びください。（部下がいない方は後輩や部下がいた場合をイメージしてください）</div><table class="matrix-table"><tr><th>質問項目</th>${scales.map(s=>`<th><div class="matrix-label">${s}</div></th>`).join('')}</tr>`;
   q23Items.forEach((item, i) => {
     html += `<tr><td style="text-align:left">${item}</td>${[1,2,3,4,5].map(v => `<td><input type="radio" name="q23_${i}" value="${v}" ${S.a.q23[i]==v?'checked':''} onchange="S.a.q23[${i}]=${v}"></td>`).join('')}</tr>`;
   });
