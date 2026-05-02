@@ -1162,7 +1162,7 @@ function renderPOST(){
     <div class="label">Post Survey</div><h2 style="font-size:26px;margin-bottom:20px">ゲーム後アンケート</h2>
     
     <div style="margin-bottom:32px">
-      <div class="label" style="margin-bottom:8px">Q21：ゲーム「課長の野望」で提供された「AI推薦」「黒革の手帳」はリアリティありましたか？</div>
+      <div class="label" style="margin-bottom:8px">ゲーム中の「基礎情報」「AI推薦」「黒革の手帳」は確認しましたか？</div>
       <div class="scale5" id="realism-scale">${[1,2,3,4,5].map(v=>`<div class="scale5-item ${S.a.realism==v?'selected':''}" onclick="selectScale('realism',this,'${v}')"><div class="scale5-val">${v}</div><div class="scale5-label">${scales[v-1]}</div></div>`).join('')}</div>
       <input type="hidden" id="realism-val" value="${S.a.realism}">
     </div>
