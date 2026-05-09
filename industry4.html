@@ -1230,7 +1230,7 @@ function renderDEMO(){
     <p style="color:var(--cream2);margin-bottom:24px;font-size:13px">分析のために使用します。個人が特定される形での公開は一切行いません。</p>
     <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:16px">
       <div>
-        <div class="label" style="margin-bottom:8px">Q26：パナソニックグループの方はGlobal IDを入力ください／パナソニックグループ以外の方は入力不要です</div>
+        <div class="label" style="margin-bottom:8px">Q26：パナソニックグループの方はGlobal IDを入力ください</div>
         <input class="txt" id="panaid" placeholder="（Global ID/半角）" value="${S.a.panaid}">
       </div>
       <div>
@@ -1602,7 +1602,7 @@ const PHASE_CIN = {
     narrative:'TENKAへのアクセスが完了しました。\nアルゴリズムが各候補者のマッチングスコアを出力します。',
     color:'#4FC3F7',bar:'#1BA8B8'},
   NB:{icon:'🔒',label:'CLASSIFIED / TOP SECRET',title:'機密情報ファイル解錠',sub:'BLACK NOTEBOOK REVIEW',
-    narrative:'このファイルは公式記録には存在しません。\n人事部長が個人的に収集した非公式情報です。取り扱い厳重注意。',
+    narrative:'このファイルは公式記録には存在しません。\n人事課長が個人的に収集した非公式情報です。取り扱い厳重注意。',
     color:'#CC4444',bar:'#B03030'},
   POST:{icon:'✅',label:'ASSESSMENT COMPLETE',title:'全フェーズ評価完了',sub:'POST SURVEY',
     narrative:'3フェーズの人材評価が完了しました。\n続けて事後アンケートにお答えください。',
@@ -1756,13 +1756,9 @@ function buildShareText() {
        + '  🤖 AI選好スコア：'+algoStr+'（'+algoLabel+'）\n'
        + '  ⚖️  公正性スコア：'+fairStr+'（'+fairLabel+'）\n'
        + '\n'
-       + '📋 最終選考結果（全情報閲覧後）\n'
-       + rankLines + '\n'
-       + '\n'
        + '━━━━━━━━━━━━━━━━━━━\n'
        + 'あなたはどんな意思決定をしますか？\n'
        + 'ぜひ「課長の野望」に挑戦してみてください！\n'
-       + '▶ '+pageUrl;
 }
 
 function renderSharePanel() {
